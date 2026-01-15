@@ -8,6 +8,7 @@ import Setting from "./components/pages/Setting";
 import Page404 from "./components/pages/Page404";
 import PATHS from "./router/paths";
 import UserManagement from "./components/pages/UserManagement";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="*" element={<Page404 />} />
         </Routes>
       </Router>
+      <Toaster />
     </>
   );
 }
