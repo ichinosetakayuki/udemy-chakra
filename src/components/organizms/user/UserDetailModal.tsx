@@ -1,12 +1,14 @@
 import { Stack, Dialog, Field, Input, CloseButton } from "@chakra-ui/react";
 import { memo } from "react";
+import type { User } from "../../../types/api/user";
 
 type Props = {
-  open: buulean;
+  user: User | null;
+  open: boolean;
   onOpenChange: (e : { open: boolean}) => void;
 };
 
-export const UserDetailModal = memo(({ open, onOpenChange }: Props) => {
+export const UserDetailModal = memo(({ user, open, onOpenChange }: Props) => {
   return (
     <Dialog.Root
       lazyMount
@@ -26,19 +28,19 @@ export const UserDetailModal = memo(({ open, onOpenChange }: Props) => {
             <Stack>
               <Field.Root>
                 <Field.Label>名前</Field.Label>
-                <Input value="てすと" disabled />
+                <Input value={user?.username ?? ""} readOnly />
               </Field.Root>
               <Field.Root>
                 <Field.Label>フルネーム</Field.Label>
-                <Input value="FULL NAME" disabled />
+                <Input value={user?.name ?? ""} readOnly />
               </Field.Root>
               <Field.Root>
                 <Field.Label>MAIL</Field.Label>
-                <Input value="test@example.jp" disabled />
+                <Input value={user?.email ?? ""} readOnly />
               </Field.Root>
               <Field.Root>
                 <Field.Label>TEL</Field.Label>
-                <Input value="000-1234-5678" disabled />
+                <Input value={user?.phone ?? ""} readOnly />
               </Field.Root>
             </Stack>
           </Dialog.Body>
