@@ -5,13 +5,14 @@ import { UserCard } from "../organizms/user/UserCard";
 import { useAllUsers } from "@/hooks/useAllUsers";
 import { UserDetailModal } from "../organizms/user/UserDetailModal";
 import { useSelectUser } from "../../hooks/useSelectUser";
+import { useLoginUser } from "../../hooks/useLoginUser";
 
 const UserManagement = memo(() => {
   const { getUsers, loading, users } = useAllUsers();
 
   const [open, setOpen] = useState(false);
   const { onSelectUser, selectedUser } = useSelectUser();
-  console.log(selectedUser);
+  const { loginUser } = useLoginUser();
 
   useEffect(() => { getUsers(); }, [getUsers]);
 
@@ -47,6 +48,7 @@ const UserManagement = memo(() => {
           <UserDetailModal
             user={selectedUser}
             open={open}
+            isAdmin={loginUser?.isAdmin}
             onOpenChange={(e) => setOpen(e.open)}
           />
         </HeaderLayout>
